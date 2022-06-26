@@ -1,11 +1,14 @@
 // Import react hooks
 import { useState } from 'react'
 
+// Import react components
+import Header from './assets/components/Header';
+
 function App() {
 
   return (
     <div className="App">
-      <h1>Control de presupuesto</h1>
+      <Header />
     </div>
   )
 }
