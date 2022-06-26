@@ -8,4 +8,5 @@ const Mensaje = ({children , tipo}) => {
     );
 };
 
+// Export Mensaje component
 export default Mensaje;

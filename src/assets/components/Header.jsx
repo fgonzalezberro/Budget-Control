@@ -3,14 +3,19 @@ import React from 'react';
 // Import react components
 import NuevoPresupuesto from './NuevoPresupuesto';
 
-const Header = ({presupuestoInicial , setPresupuestoInicial}) => {
+const Header = ({presupuestoInicial , setPresupuestoInicial, isValidBudget, setIsValidBudget}) => {
     return (
         <header>
             <h1>Planificador de gastos</h1>
-            <NuevoPresupuesto 
-                presupuestoInicial = {presupuestoInicial}
-                setPresupuestoInicial = {setPresupuestoInicial}
-            />
+
+            {
+                isValidBudget ? (<p>Success</p>) :
+                (<NuevoPresupuesto 
+                    presupuestoInicial = {presupuestoInicial}
+                    setPresupuestoInicial = {setPresupuestoInicial}
+                    setIsValidBudget = {setIsValidBudget}
+                />)
+            }
         </header>
     );
 };
