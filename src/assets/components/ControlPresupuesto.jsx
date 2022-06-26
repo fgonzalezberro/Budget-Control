@@ -18,6 +18,14 @@ const ControlPresupuesto = ({presupuestoInicial}) => {
                 <p>
                     <span>Presupuesto: </span> {formatPrice(presupuestoInicial)}
                 </p>
+
+                <p>
+                    <span>Disponible: </span> {formatPrice(presupuestoInicial)}
+                </p>
+
+                <p>
+                    <span>Gastado: </span> {formatPrice(presupuestoInicial)}
+                </p>
             </div>
         </div>
     );
