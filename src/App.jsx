@@ -5,10 +5,14 @@ import { useState } from 'react'
 import Header from './assets/components/Header';
 
 function App() {
+  const [presupuestoInicial , setPresupuestoInicial ] = useState(0);
 
   return (
     <div className="App">
-      <Header />
+      <Header 
+        presupuestoInicial = {presupuestoInicial}
+        setPresupuestoInicial = {setPresupuestoInicial}
+      />
     </div>
   )
 }

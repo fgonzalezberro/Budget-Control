@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NuevoPresupuesto = () => {
+const NuevoPresupuesto = ({presupuestoInicial , setPresupuestoInicial}) => {
     return (
         <div className="contenedor-presupuesto contenedor sombra">
             <form className='formulario'>
@@ -8,9 +8,10 @@ const NuevoPresupuesto = () => {
                     <label>Definir presupuesto</label>
 
                     <input 
-                        type="text" 
-                        className='nuevo-presupuesto'
-                        placeholder='Añade tu presupuesto'
+                        type = "text" 
+                        className = "nuevo-presupuesto"
+                        value = {presupuestoInicial}
+                        onChange = {e => setPresupuestoInicial(e.target.value)}
                     />
                 </div>
 
