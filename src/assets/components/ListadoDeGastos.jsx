@@ -9,10 +9,10 @@ const ListadoDeGastos = ({gastos}) => {
             <h2>{gastos.length ? "Gastos" : "Aún no hay gastos"}</h2>
 
             {
-                gastos.map(e => (
+                gastos.map(gasto=> (
                     <Gastos 
-                        key={e.id} 
-                        nombre={e.nombre}
+                        key={gasto.id} 
+                        gasto={gasto}
                     />
                 ))
             }

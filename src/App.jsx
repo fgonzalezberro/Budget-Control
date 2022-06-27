@@ -7,7 +7,7 @@ import ListadoDeGastos from './assets/components/ListadoDeGastos';
 import Modal from "./assets/components/Modal";
 
 // Import Helpers
-import { generateId } from './assets/helpers';
+import { generateId , formatDate } from './assets/helpers';
 
 // Import images
 import addNewSpend from "./assets/img/nuevo-gasto.svg";
@@ -28,7 +28,10 @@ function App() {
   }
 
   const guardarDato = g =>{
+
     g.id = generateId();
+    g.fecha = formatDate(Date.now());
+
     setGastos([...gastos, g]);
 
     setAnimacionModal(false);
