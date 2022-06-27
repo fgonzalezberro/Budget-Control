@@ -1,8 +1,9 @@
 // Import react hooks
-import { useState } from 'react'
+import { useState } from 'react';
 
 // Import react components
 import Header from './assets/components/Header';
+import ListadoDeGastos from './assets/components/ListadoDeGastos';
 import Modal from "./assets/components/Modal";
 
 // Import Helpers
@@ -48,13 +49,21 @@ function App() {
       />
 
       {isValidBudget &&  (
+        <>
+         <main>
+            <ListadoDeGastos 
+              gastos={gastos}
+            />
+         </main>
+
          <div className='nuevo-gasto'>
-         <img 
-              src={addNewSpend} 
-              alt="Add spent icon" 
-              onClick={handleModal}
-          />
-       </div>
+          <img 
+                src={addNewSpend} 
+                alt="Add spent icon" 
+                onClick={handleModal}
+            />
+        </div>
+       </>
       )}
 
       {modal && <Modal 
