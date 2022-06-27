@@ -1,15 +1,19 @@
 // Import react hooks
 import {useState} from 'react';
 
+// Import React components
+import Mensaje from './Mensaje';
+
 // Import images
 import cerrarButton from "../img/cerrar.svg";
 
-const Modal = ({setModal, animacionModal , setAnimacionModal}) => {
+const Modal = ({setModal, animacionModal , setAnimacionModal, guardarDato}) => {
 
     // Component States
     const [nombre , setNombre] = useState("");
     const [cantidad , setCantidad] = useState("");
     const [categoria , setCategoria] = useState("");
+    const [mensaje , setMensaje] = useState("");
 
 
     const handleModal = () =>{
@@ -18,6 +22,20 @@ const Modal = ({setModal, animacionModal , setAnimacionModal}) => {
         setTimeout(() =>{
             setModal(false);
         },600);
+    }
+
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+
+        if([nombre, cantidad, categoria].includes("")){
+            setMensaje("Ningun campo puede quedar vacio");
+
+            setTimeout(() =>{
+                setMensaje("");
+            },2000);
+        }else{
+            guardarDato({nombre, cantidad, categoria});
+        }
     }
 
     return (
@@ -30,8 +48,13 @@ const Modal = ({setModal, animacionModal , setAnimacionModal}) => {
                 />
             </div>
 
-            <form className={`formulario ${animacionModal ? "animar" : "cerrar"}`}>
+            <form 
+                onSubmit={handleSubmit}
+                className={`formulario ${animacionModal ? "animar" : "cerrar"}`
+            }>
                 <legend>Nuevo gasto</legend>
+
+                {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
 
                 <div className='campo'>
                     <label htmlFor="nombre">Nombre gasto</label>
