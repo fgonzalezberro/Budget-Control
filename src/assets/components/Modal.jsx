@@ -1,10 +1,16 @@
-// Import react library
-import React from 'react';
+// Import react hooks
+import {useState} from 'react';
 
 // Import images
 import cerrarButton from "../img/cerrar.svg";
 
 const Modal = ({setModal, animacionModal , setAnimacionModal}) => {
+
+    // Component States
+    const [nombre , setNombre] = useState("");
+    const [cantidad , setCantidad] = useState("");
+    const [categoria , setCategoria] = useState("");
+
 
     const handleModal = () =>{
         setAnimacionModal(false);
@@ -34,6 +40,8 @@ const Modal = ({setModal, animacionModal , setAnimacionModal}) => {
                         id="nombre"
                         type="text" 
                         placeholder="Añade nombre del gasto"
+                        value={nombre}
+                        onChange={e => setNombre(e.target.value)}
                     />
                 </div>
 
@@ -42,8 +50,10 @@ const Modal = ({setModal, animacionModal , setAnimacionModal}) => {
 
                     <input 
                         id="cantidad"
-                        type="text" 
+                        type="number" 
                         placeholder="Añade cantidad. Ej: 300"
+                        value={cantidad}
+                        onChange={e => setCantidad(Number(e.target.value))}
                     />
                 </div>
 
@@ -52,6 +62,8 @@ const Modal = ({setModal, animacionModal , setAnimacionModal}) => {
 
                     <select 
                         id="categoria"
+                        value={categoria}
+                        onChange={e => setCategoria(e.target.value)}
                     >
                         
                         <option value="">-- Seleccione categoria</option>
