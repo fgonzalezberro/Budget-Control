@@ -1,4 +1,15 @@
+// Import react library
 import React from 'react';
+
+// Import react dependencies
+import {
+    LeadingActions,
+    SwipeableList,
+    SwipeableListItem,
+    SwipeAction,
+    TrailingActions,
+  } from 'react-swipeable-list';
+  import 'react-swipeable-list/dist/styles.css';
 
 // Import images
 import ahorroIcono from "../img/icono_ahorro.svg";
@@ -24,32 +35,55 @@ const Gastos = ({id , gasto}) => {
         suscripciones: suscripcionesIcono
     }
 
+    const leadingActions = () =>(
+        <LeadingActions>
+            <SwipeAction onClick={() => console.log("Editar")}>
+                Editar
+            </SwipeAction>
+        </LeadingActions>
+    )
+
+    const trailingActions = () =>(
+        <TrailingActions>
+            <SwipeAction onClick={() => console.log("Eliminar")}>
+                Eliminar
+            </SwipeAction>
+        </TrailingActions>
+    )
+
     return (
-        <div className='gasto sombra'>
+        <SwipeableList>
+            <SwipeableListItem
+                leadingActions={leadingActions()}
+                trailingActions={trailingActions()}
+            >
+                <div className='gasto sombra'>
 
-            <div className='contenido-gasto'>
-                <img 
-                    src={indexImages[categoria]}
-                    alt={`${categoria}Icon`} 
-                />
+                    <div className='contenido-gasto'>
+                        <img 
+                            src={indexImages[categoria]}
+                            alt={`${categoria}Icon`} 
+                        />
 
-                <div className='descripcion-gasto'>
-                    <p className='categoria'>
-                        {categoria}
-                    </p>
+                        <div className='descripcion-gasto'>
+                            <p className='categoria'>
+                                {categoria}
+                            </p>
 
-                    <p className='nombre-gasto'>
-                        {nombre}
-                    </p>
+                            <p className='nombre-gasto'>
+                                {nombre}
+                            </p>
 
-                    <p className='fecha-gasto'>
-                        Agregado el: {" "} <span>{fecha}</span>
-                    </p>
+                            <p className='fecha-gasto'>
+                                Agregado el: {" "} <span>{fecha}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <p className="cantidad-gasto">${gasto.cantidad}</p>
                 </div>
-            </div>
-
-            <p className="cantidad-gasto">${gasto.cantidad}</p>
-        </div>
+            </SwipeableListItem>
+        </SwipeableList>
     );
 };
 
