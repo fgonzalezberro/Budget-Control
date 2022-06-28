@@ -1,5 +1,5 @@
 // Import react hooks
-import {useState} from 'react';
+import {useState , useEffect} from 'react';
 
 // Import React components
 import Mensaje from './Mensaje';
@@ -7,13 +7,21 @@ import Mensaje from './Mensaje';
 // Import images
 import cerrarButton from "../img/cerrar.svg";
 
-const Modal = ({setModal, animacionModal , setAnimacionModal, guardarDato}) => {
+const Modal = ({setModal, animacionModal , setAnimacionModal, guardarDato, editarGasto}) => {
 
     // Component States
     const [nombre , setNombre] = useState("");
     const [cantidad , setCantidad] = useState("");
     const [categoria , setCategoria] = useState("");
     const [mensaje , setMensaje] = useState("");
+
+    useEffect(() =>{
+        if(Object.keys(editarGasto).length > 0){
+          setNombre(editarGasto.nombre);
+          setCantidad(editarGasto.cantidad);
+          setCategoria(editarGasto.categoria);
+        }
+    }, [editarGasto]);
 
 
     const handleModal = () =>{
@@ -52,12 +60,12 @@ const Modal = ({setModal, animacionModal , setAnimacionModal, guardarDato}) => {
                 onSubmit={handleSubmit}
                 className={`formulario ${animacionModal ? "animar" : "cerrar"}`
             }>
-                <legend>Nuevo gasto</legend>
+                <legend>{editarGasto.nombre ? "Editar gasto" : "Nuevo gasto"}</legend>
 
                 {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
 
                 <div className='campo'>
-                    <label htmlFor="nombre">Nombre gasto</label>
+                    <label htmlFor="nombre">Nombre</label>
 
                     <input 
                         id="nombre"
@@ -102,7 +110,7 @@ const Modal = ({setModal, animacionModal , setAnimacionModal, guardarDato}) => {
 
                 <input 
                     type="submit" 
-                    value="Añadir gasto"
+                    value={editarGasto.nombre ? "Modificar gasto" : "Añadir gasto"}
                 />
             </form>
         </div>

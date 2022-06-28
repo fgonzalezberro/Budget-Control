@@ -32,6 +32,7 @@ function App() {
 
   const handleModal = () =>{
     setModal(true);
+    setEditarGasto({});
 
     setTimeout(() =>{
       setAnimacionModal(true);
@@ -87,6 +88,7 @@ function App() {
                    animacionModal={animacionModal}
                    setAnimacionModal={setAnimacionModal}
                    guardarDato={guardarDato}
+                   editarGasto={editarGasto}
                 />
       }
      
