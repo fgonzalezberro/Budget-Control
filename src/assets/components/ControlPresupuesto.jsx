@@ -1,6 +1,17 @@
-import React from 'react';
+// Import react hooks
+import {useEffect , useState} from 'react';
 
-const ControlPresupuesto = ({presupuestoInicial}) => {
+const ControlPresupuesto = ({presupuestoInicial , gastos}) => {
+
+    // Component states
+    const [disponible , setDisponible] = useState(0);
+    const [gastado , setGastado] = useState(0);
+
+    useEffect(() =>{
+        const totalGastado = gastos.reduce((total , gasto) => gasto.cantidad + total , 0);
+
+        setGastado(totalGastado)
+    }, [gastos]);
 
     // Format price
     const formatPrice = (cant) =>{
@@ -20,11 +31,11 @@ const ControlPresupuesto = ({presupuestoInicial}) => {
                 </p>
 
                 <p>
-                    <span>Disponible: </span> {formatPrice(presupuestoInicial)}
+                    <span>Disponible: </span> {formatPrice(disponible)}
                 </p>
 
                 <p>
-                    <span>Gastado: </span> {formatPrice(presupuestoInicial)}
+                    <span>Gastado: </span> {formatPrice(gastado)}
                 </p>
             </div>
         </div>
