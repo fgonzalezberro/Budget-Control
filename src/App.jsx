@@ -1,5 +1,5 @@
 // Import react hooks
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Import react components
 import Header from './assets/components/Header';
@@ -18,6 +18,17 @@ function App() {
   const [modal , setModal] = useState(false);
   const [animacionModal , setAnimacionModal] = useState(false);
   const [gastos , setGastos] = useState([]);
+  const [editarGasto , setEditarGasto] = useState({});
+
+  useEffect(() =>{
+      if(Object.keys(editarGasto).length > 0){
+        setModal(true);
+
+        setTimeout(() =>{
+          setAnimacionModal(true);
+        }, 600);
+      }
+  }, [editarGasto]);
 
   const handleModal = () =>{
     setModal(true);
@@ -57,6 +68,7 @@ function App() {
          <main>
             <ListadoDeGastos 
               gastos={gastos}
+              setEditarGasto={setEditarGasto}
             />
          </main>
 

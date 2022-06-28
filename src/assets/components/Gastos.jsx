@@ -21,8 +21,9 @@ import saludIcono from "../img/icono_salud.svg";
 import suscripcionesIcono from "../img/icono_suscripciones.svg";
 
 
-const Gastos = ({id , gasto}) => {
+const Gastos = ({id , gasto , setEditarGasto}) => {
 
+    // Destructuring "gasto" object
     const {categoria, nombre, fecha} = gasto;
 
     const indexImages = {
@@ -37,7 +38,7 @@ const Gastos = ({id , gasto}) => {
 
     const leadingActions = () =>(
         <LeadingActions>
-            <SwipeAction onClick={() => console.log("Editar")}>
+            <SwipeAction onClick={() => setEditarGasto(gasto)}>
                 Editar
             </SwipeAction>
         </LeadingActions>
