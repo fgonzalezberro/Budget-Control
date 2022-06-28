@@ -9,8 +9,10 @@ const ControlPresupuesto = ({presupuestoInicial , gastos}) => {
 
     useEffect(() =>{
         const totalGastado = gastos.reduce((total , gasto) => gasto.cantidad + total , 0);
+        const totalDisponible = presupuestoInicial - totalGastado;
 
-        setGastado(totalGastado)
+        setGastado(totalGastado);
+        setDisponible(totalDisponible);
     }, [gastos]);
 
     // Format price
