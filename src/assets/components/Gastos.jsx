@@ -21,7 +21,7 @@ import saludIcono from "../img/icono_salud.svg";
 import suscripcionesIcono from "../img/icono_suscripciones.svg";
 
 
-const Gastos = ({id , gasto , setEditarGasto}) => {
+const Gastos = ({id , gasto , setEditarGasto, eliminarGasto}) => {
 
     // Destructuring "gasto" object
     const {categoria, nombre, fecha} = gasto;
@@ -46,7 +46,7 @@ const Gastos = ({id , gasto , setEditarGasto}) => {
 
     const trailingActions = () =>(
         <TrailingActions>
-            <SwipeAction onClick={() => console.log("Eliminar")}>
+            <SwipeAction onClick={() => eliminarGasto(gasto.id)}>
                 Eliminar
             </SwipeAction>
         </TrailingActions>
