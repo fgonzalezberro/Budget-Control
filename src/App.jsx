@@ -39,13 +39,14 @@ function App() {
     }, 600);
   }
 
+  // Save spent
   const guardarDato = g =>{
 
     g.id = generateId();
     g.fecha = formatDate(Date.now());
 
     setGastos([...gastos, g]);
-
+    setEditarGasto({})
     setAnimacionModal(false);
 
         setTimeout(() =>{
@@ -98,6 +99,7 @@ function App() {
                    setAnimacionModal={setAnimacionModal}
                    guardarDato={guardarDato}
                    editarGasto={editarGasto}
+                   setEditarGasto={setEditarGasto}
                 />
       }
      

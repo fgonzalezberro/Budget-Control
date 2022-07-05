@@ -7,7 +7,7 @@ import Mensaje from './Mensaje';
 // Import images
 import cerrarButton from "../img/cerrar.svg";
 
-const Modal = ({setModal, animacionModal , setAnimacionModal, guardarDato, editarGasto}) => {
+const Modal = ({setModal, animacionModal , setAnimacionModal, guardarDato, editarGasto, setEditarGasto}) => {
 
     // Component States
     const [nombre , setNombre] = useState("");
@@ -23,10 +23,10 @@ const Modal = ({setModal, animacionModal , setAnimacionModal, guardarDato, edita
         }
     }, [editarGasto]);
 
-
+    // Close modal
     const handleModal = () =>{
         setAnimacionModal(false);
-
+        setEditarGasto({});
         setTimeout(() =>{
             setModal(false);
         },600);
