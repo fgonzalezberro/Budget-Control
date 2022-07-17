@@ -1,6 +1,6 @@
 // Import react hooks
 import {useEffect , useState} from 'react';
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar , buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const ControlPresupuesto = ({presupuestoInicial , gastos}) => {
@@ -23,7 +23,7 @@ const ControlPresupuesto = ({presupuestoInicial , gastos}) => {
         setTimeout(() => {
             setPorcentaje(porcentajeActualizado)
         }, 1000);
-        
+
     }, [gastos]);
 
     // Format price
@@ -39,6 +39,10 @@ const ControlPresupuesto = ({presupuestoInicial , gastos}) => {
             <div>
             <CircularProgressbar 
                 value={porcentaje}
+                styles={buildStyles({
+                    pathColor: '#3B82F6',
+                    trailColor: '#F3F3F3'
+                })}
             />
             </div>
 
