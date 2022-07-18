@@ -13,11 +13,13 @@ import { generateId , formatDate } from './assets/helpers';
 import addNewSpend from "./assets/img/nuevo-gasto.svg";
 
 function App() {
-  const [presupuestoInicial , setPresupuestoInicial ] = useState(Number (localStorage.getItem('presupuestoLS')) ?? 0);
+  const [presupuestoInicial , setPresupuestoInicial ] = useState(Number(localStorage.getItem('presupuestoLS')) ?? 0);
   const [isValidBudget , setIsValidBudget] = useState(false);
   const [modal , setModal] = useState(false);
   const [animacionModal , setAnimacionModal] = useState(false);
-  const [gastos , setGastos] = useState([]);
+  const [gastos , setGastos] = useState(
+    localStorage.getItem('gastosLS') ? JSON.parse(localStorage.getItem('gastosLS')) : []
+  );
   const [editarGasto , setEditarGasto] = useState({});
 
   useEffect(() =>{
@@ -35,6 +37,12 @@ function App() {
     localStorage.setItem('presupuestoLS' , Number(presupuestoInicial) ?? 0);
   }, [presupuestoInicial]);
 
+  // This useEffect save spents in local storage
+  useEffect(() =>{
+    localStorage.setItem('gastosLS' , JSON.stringify(gastos) ??[]);
+  }, [gastos]);
+
+  // This useEffect validate if the local storage data is empty or no and show or hide budget modal.
   useEffect(() =>{
     const presupuestoInLocalStorage = Number(localStorage.getItem('presupuestoLS'));
 
