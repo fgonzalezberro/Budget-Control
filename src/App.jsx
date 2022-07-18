@@ -14,6 +14,7 @@ import { generateId , formatDate } from './assets/helpers';
 import addNewSpend from "./assets/img/nuevo-gasto.svg";
 
 function App() {
+  // States
   const [presupuestoInicial , setPresupuestoInicial ] = useState(Number(localStorage.getItem('presupuestoLS')) ?? 0);
   const [isValidBudget , setIsValidBudget] = useState(false);
   const [modal , setModal] = useState(false);
@@ -24,7 +25,8 @@ function App() {
   const [editarGasto , setEditarGasto] = useState({});
   const [filtros , setFiltros] = useState('');
   const [gastosFiltrados , setGastosFiltrados] = useState([]);
-
+  
+  // This useEffect show a modal if the 'EditarGasto object is not empty'
   useEffect(() =>{
       if(Object.keys(editarGasto).length > 0){
         setModal(true);
@@ -60,6 +62,7 @@ function App() {
     }
   }, [filtros]);
 
+  // This function handle modal
   const handleModal = () =>{
     setModal(true);
     setEditarGasto({});
@@ -115,6 +118,8 @@ function App() {
               gastos={gastos}
               setEditarGasto={setEditarGasto}
               eliminarGasto={eliminarGasto}
+              filtros={filtros}
+              gastosFiltrados={gastosFiltrados}
             />
          </main>
 
