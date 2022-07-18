@@ -13,7 +13,7 @@ import { generateId , formatDate } from './assets/helpers';
 import addNewSpend from "./assets/img/nuevo-gasto.svg";
 
 function App() {
-  const [presupuestoInicial , setPresupuestoInicial ] = useState(0);
+  const [presupuestoInicial , setPresupuestoInicial ] = useState(Number (localStorage.getItem('presupuestoLS')) ?? 0);
   const [isValidBudget , setIsValidBudget] = useState(false);
   const [modal , setModal] = useState(false);
   const [animacionModal , setAnimacionModal] = useState(false);
@@ -29,6 +29,17 @@ function App() {
         }, 600);
       }
   }, [editarGasto]);
+
+  // This useEffect save budget in local storage.
+  useEffect(() =>{
+    localStorage.setItem('presupuestoLS' , Number(presupuestoInicial) ?? 0);
+  }, [presupuestoInicial]);
+
+  useEffect(() =>{
+    const presupuestoInLocalStorage = Number(localStorage.getItem('presupuestoLS'));
+
+    presupuestoInLocalStorage > 0 ? setIsValidBudget(true) : setIsValidBudget(false);
+  }, []);
 
   const handleModal = () =>{
     setModal(true);
